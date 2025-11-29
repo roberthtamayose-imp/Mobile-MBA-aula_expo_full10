@@ -49,6 +49,10 @@ export default function HomePage() {
             <Text style={styles.title}>Listagem de Usuários</Text>
             <Text>{users.length} usuários cadastrados.</Text>
 
+            <View style={styles.rolesButton}>
+                <Button title="Gerenciar Roles" onPress={() => navigation.navigate('roles')} />
+            </View>
+
             <View>
                 <FlatList
                     data={users}
@@ -57,6 +61,7 @@ export default function HomePage() {
                         <ListItem
                             title={item.name}
                             subtitle={item.username}
+                            extra={item.roles?.length ? `Roles: ${item.roles.join(', ')}` : undefined}
                             onUpdate={() => update(item)}
                             onDelete={() => remove(item)}
                         />
@@ -79,5 +84,8 @@ const styles = StyleSheet.create({
         fontSize: 24,
         marginBottom: 20,
         fontWeight: 'bold',
+    },
+    rolesButton: {
+        marginVertical: 15,
     },
 })

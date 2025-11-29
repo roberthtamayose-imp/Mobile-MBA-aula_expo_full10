@@ -8,17 +8,21 @@ import RightActions from './RightActions'
 type Props = {
     title: string
     subtitle: string
+    extra?: string
     onUpdate: () => void
     onDelete: () => void
 }
 
-export default function ListItem({ title, subtitle, onUpdate, onDelete }: Props) {
+export default function ListItem({ title, subtitle, extra, onUpdate, onDelete }: Props) {
     return (
         <GestureHandlerRootView>
             <Swipeable renderRightActions={() => <RightActions onUpdate={onUpdate} onDelete={onDelete} />}>
                 <View style={styles.itemContainer}>
-                    <Text style={styles.itemTitle}>{title} </Text>
-                    <Text style={styles.itemSubtitle}>{subtitle}</Text>
+                    <View style={styles.itemContent}>
+                        <Text style={styles.itemTitle}>{title}</Text>
+                        <Text style={styles.itemSubtitle}>{subtitle}</Text>
+                        {extra && <Text style={styles.itemExtra}>{extra}</Text>}
+                    </View>
                 </View>
             </Swipeable>
         </GestureHandlerRootView>
@@ -29,17 +33,24 @@ const styles = StyleSheet.create({
     itemContainer: {
         flex: 1,
         padding: 10,
-        flexDirection: 'row',
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
-        justifyContent: 'space-between',
         width: Dimensions.get('window').width - 10,
+    },
+    itemContent: {
+        flex: 1,
     },
     itemTitle: {
         fontSize: 18,
+        fontWeight: 'bold',
     },
     itemSubtitle: {
         color: '#555',
-        fontWeight: 'bold',
+        marginTop: 2,
+    },
+    itemExtra: {
+        color: '#007AFF',
+        fontSize: 12,
+        marginTop: 4,
     },
 })

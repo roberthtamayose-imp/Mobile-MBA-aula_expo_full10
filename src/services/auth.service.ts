@@ -1,7 +1,7 @@
 import * as repo from '../services/auth.repo'
 import { User } from "../model";
 
-const URL = 'http://192.168.0.20:3030/auth';
+const URL = 'https://6fdd7d547540.ngrok-free.app/auth';
 
 export async function login(username: string, password: string) {
 
