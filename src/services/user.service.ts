@@ -1,7 +1,7 @@
 import * as repo from '../services/auth.repo'
 import { User } from "../model";
 
-const URL = 'https://6fdd7d547540.ngrok-free.app/users';
+const URL = 'http://192.168.0.20:3030/users';
 
 async function getHeaders() {
     const session = await repo.getSession();
